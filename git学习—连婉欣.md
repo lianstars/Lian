@@ -272,9 +272,23 @@ tag可以简单的设置为一个数字与commit绑定在一起，比较容易�
    1. 从本地删除：`git tag -d <tagname>`
    2. 从远程删除：`git push origin :refs/tags/<tagname>`
 
+## 自定义git
 
+### 忽略特殊文件
 
+### 配置别名
 
+1. `git config --global alias.别名 原名`：将一些复杂命令简写，便于使用
+
+   如`git config --global alias.st status`
+
+   `--global`参数是全局参数，也就是这些命令在这台电脑的所有Git仓库下都有用，如果不加，只表示对当前仓库有用
+
+2. `.git/config`：配置文件存放的地方，别名在`[alias]`后面，删除别名时直接把对应行删除即可
+
+3. `cat .gitconfig`：当前用户的Git配置文件，放在用户主目录下的一个隐藏文件`.gitconfig`中
+
+   
 
 
 

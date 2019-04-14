@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+	<title>链表</title>
+</head> 
+<body>
+<script>
+	function LinkedList() {                //创建一个链表的类 
+		var Node = function(element)  {
+			this.element = element;
+			this.next = null;
+		};
+		//创建一个辅助的类，用来存放加入链表的内容以及指向下一个节点的指针
+		var length = 0;     //初始化空链表的长度为0
+		var head = null;    //初始化空链表的头指针为空
+
+        //向链表添加元素
+		this.add = function(element){
+			var node = new Node(element),current;  
+			//创建一个辅助类Node的实例，node的element是新增加的元素，指向下一节点的指针next为空
+	        //创建一个变量current不需要赋值，用来存当前指针的指向，作为一个标记
+			if (head == null) {   //如果是空链表，则将表头指向node
+				head = node;
+			}
+			else {                
+				current = head;   //如果链表中已有元素，需要从表头开始遍历元素
+				while (current.next) {  //直到最后一个元素，其next为空，遍历结束
+					current = current.next
+				}
+				current.next = node;    //将链表尾指向node(包含新添加的元素以及空指针)
+			}
+			length++;    //最后更新链表长度
+		}
+        
+        //移除指定位置项并返回该项
+		this.remove = function(position){
+			if (position>-1 && position<length) {    //判断移除的位置是否在链表中
+				var current = head,previous,index=0;
+				if (position === 0) {
+					head = current.next;             //若移除第一项直接将头节点指向下一个节点即可
+				}
+				else {
+					while (index < position) {       //从首项开始遍历到移除项
+						previous = current;
+						current = current.next;
+						index++;
+					}
+					previous.next = current.next;    
+					//将移除项前面元素的指向下一元素的指针指向移除项的下一个元素
+				}
+				length--;    //更新链表长度
+				return current.element;    
+			}
+			else {
+				return false;        //若位置不在链表中返回false
+			}
+		}
+
+		//链表中任意位置插入项
+		this.insert = function(position,element){
+			if (position>-1 && position<length) {   //判断位置是否在链表中
+				var node = new Node(element),  //创建Node实例，包含节点内容以及指针
+					current=head,
+					previous,
+					index=0;
+				if (position === 0) {  
+					node.next = current;
+					head = node;            
+				}
+				//在第一个位置插入元素，将元素节点node指向下一元素的指针指向current,将head指向node
+				else {
+					while (index < position) {       //遍历指定位置之前的节点
+						previous = current;
+						current = current.next;
+						index++
+					}
+					previous.next = node;          
+					node.next = current;             //在previous和current之间架起联系
+				}
+				length++;      //更新链表长度
+			}
+			else {
+				return false;
+			}
+		}
+
+		//将链表转化为字符串
+		this.toString = function(){
+			var current = head,
+				string = '';     //声明一个空字符串
+			while(current) {
+				string += current.element;   //将字符串元素拼接
+				current = current.next;
+			}
+			return string;
+		}
+
+		//查找某一元素的位置
+		this.indexOf = function(element){
+			var current = head,index=0;
+			while (current) {
+				if (current.element === element) {
+					return index;
+				}
+				index++;
+				current = current.next;
+			}
+			return -1;
+		}
+
+		//与数组的length相似，返回链表包含元素的个数
+		this.size = function(){
+			return length;
+		}
+
+		//查看链表内容
+		this.print = function(){
+    		var current = head,result=[];
+    		while(current){
+        		result.push(current.element); 
+        		//使用了数组的push方法，遍历链表的元素推进数组中
+        		current = current.next;
+        		//指针向后移
+    		}
+    		return result;
+		}
+	}
+	var list = new LinkedList();
+	list.add(1);      // 链表：1
+	list.add(2);      // 链表：1,2
+	list.add(3);      // 链表：1,2,3
+	list.remove(2);   // 链表：1,3
+	list.insert(1,5); // 链表：1,5,3
+	list.toString();  // 153
+	list.indexOf(5);  // 1
+	list.size();      // 3
+	console.log(list.print());
+</script>
+</body>
+</html>
