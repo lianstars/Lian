@@ -34,6 +34,7 @@ export default{
 <style lang="stylus" scoped>
     .wrapper >>> .swiper-pagination
       text-align: right
+      margin-bottom: 10px
     .wrapper >>> .swiper-pagination-bullet-active
       background: #fff
       width: 15px
