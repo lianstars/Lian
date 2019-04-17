@@ -2,11 +2,11 @@
   <div class="Icon1">
     <div class="item">
       <img class="img" src="../../../assets/img/travel.jpg">
-      <p>攻略-景点</p>
+      <p>攻略·景点</p>
     </div>
     <div class="item">
       <img class="img" src="../../../assets/img/ticket.jpg">
-      <p>门票-玩乐</p>
+      <p>门票·玩乐</p>
     </div>
     <div class="item">
       <img class="img" src="../../../assets/img/food.jpg">
