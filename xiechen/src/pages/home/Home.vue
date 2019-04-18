@@ -5,6 +5,7 @@
 <home-icon1></home-icon1>
 <home-icon2></home-icon2>
 <home-icon3></home-icon3>
+<home-special></home-special>
 </div>
 </template>
 
@@ -14,6 +15,7 @@ import HomeSwiper from './components/Swiper'
 import HomeIcon1 from './components/Icon1'
 import HomeIcon2 from './components/Icon2'
 import HomeIcon3 from './components/Icon3'
+import HomeSpecial from './components/Special'
 export default{
   name: 'Home',
   components: {
@@ -21,7 +23,8 @@ export default{
     HomeSwiper,
     HomeIcon1,
     HomeIcon2,
-    HomeIcon3
+    HomeIcon3,
+    HomeSpecial
   }
 }
 </script>

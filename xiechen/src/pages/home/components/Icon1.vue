@@ -50,6 +50,6 @@ export default{
         width: 33px
         margin-bottom: 5px
       .item p
-        display: inline-block
+        display: block
         font-size: 12px
 </style>
