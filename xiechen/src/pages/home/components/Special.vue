@@ -97,7 +97,7 @@ export default{
       width: 15px
       border-radius: 5px
     .special
-      width: 90%
+      width: 94%
       margin: 0 auto
       background: #fff
       border-radius: 10px
