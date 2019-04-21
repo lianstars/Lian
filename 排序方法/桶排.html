@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+	<title>桶排</title>
+</head> 
+<body>
+
+<script>
+	function List() {
+		//内部创建一个数组
+		var array = [];
+
+		//对数组进行添加
+		this.insert = function(item) {
+			array.push(item);
+		}
+		this.toString = function() {
+			return array.join();
+		}
+
+		//桶排排序
+		this.bucketSort = function(num) {
+			if (array[0]) {
+				if (array.length === 1) {
+					return array;
+				}
+				var len = array.length,
+					bucket = [],
+					result = [],
+					min = max = array[0],
+					space,
+					n = 0;
+				var index = Math.floor(len/num);
+				//判断桶的个数是否合理
+				while(index < 2) {
+					num--;
+					index = Math.floor(len/num);
+				}
+				//确定最大最小值
+				for (var i=1; i<len; i++) {
+					min = min <= array[i] ? min : array[i];
+					max = max >= array[i] ? max : array[i];
+				}
+				//将元素放进相应桶内
+				space = (max - min + 1)/num;  //步长
+				for (var j=0; j<len; j++) {
+					var index = Math.floor((array[j]-min)/space);
+					//非空桶
+					if (bucket[index]) {
+						var k = bucket[index].length - 1;
+						while (k>=0 && bucket[index][k]>array[j]) {
+							bucket[index][k+1] = bucket[index][k];
+							k--;
+						}
+						bucket[index][k+1] = array[j];
+					}
+					//空桶
+					else {
+						bucket[index] = [];
+						bucket[index].push(array[j]);
+					}
+				}
+				//对桶进行拼接
+				while (n<num) {
+					result = result.concat(bucket[n]);
+					n++;
+				}
+				console.log(result);
+				return result;
+			}
+			else {
+				console.log("false")
+			}
+		}
+	}
+    
+    //[5,4,2,1,6]
+	var list = new List();
+	list.insert(5);
+	list.insert(4);
+	list.insert(2);
+	list.insert(1);
+	list.insert(6);
+    console.log(list.toString());
+    list.bucketSort(2)
+</script>
+</body>
+</html>

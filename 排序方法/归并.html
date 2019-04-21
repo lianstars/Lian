@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+	<title>归并</title>
+</head> 
+<body>
+
+<script>
+	function List() {
+		//内部创建一个数组
+		var array = [];
+
+		//对数组进行添加
+		this.insert = function(item) {
+			array.push(item);
+		}
+		this.toString = function() {
+			return array.join();
+		}
+
+		//归并排序
+		this.mergeSort = function() {
+			//将数组分区
+			var mergeSortRec = function(array) {
+				var length = array.length;
+				if (length === 1) {
+					return array
+				}
+				var mid = Math.floor(length/2),
+					left = array.slice(0, mid),
+					right = array.slice(mid, length);  //将数组不断切割直到只剩下一个元素
+				//对数组进行递归分区再递归排序
+				return merge(mergeSortRec(left),mergeSortRec(right)); //对切割成左右的数组不断递归排序
+			}
+			//对数组进行排序
+			var merge = function(left,right) {
+				var result = [],     //一个空数组用来存放排序后的结果
+					il = 0,
+					ir = 0;
+				while(il < left.length && ir < right.length) {
+					if (left[il] < right[ir]) {
+						result.push(left[il]);
+						++il;
+					} else {
+						result.push(right[ir]);
+						++ir;              //将小的元素放进空数组，并且指针移向下一位置
+					}
+				}
+				while(il < left.length) {  
+					result.push(left[il]);
+					++il;
+				}
+				while(ir < right.length) {
+					result.push(right[ir]);
+					++ir;
+				}
+				return result;
+			}
+
+			array = mergeSortRec(array);
+			console.log(array.toString())
+		}
+
+
+	}
+    
+    //[5,4,2,1,6]
+	var list = new List();
+	list.insert(5);
+	list.insert(4);
+	list.insert(2);
+	list.insert(1);
+	list.insert(6);
+    console.log(list.toString());
+    list.mergeSort();
+</script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+	<title>快排</title>
+</head> 
+<body>
+
+<script>
+	function List() {
+		//内部创建一个数组
+		var array = [];
+
+		//对数组进行添加
+		this.insert = function(item) {
+			array.push(item);
+		}
+		this.toString = function() {
+			return array.join();
+		}
+
+		//快速排序
+		this.quickSort = function() {
+
+			var quick = function(array, left, right) {
+				var index;
+				if (array.length > 1) {   //若数组个数小于1则不需要排序
+					index = partition(array, left, right);    //划分子数组
+					if (left < index-1) {    //若左边存在子数组，继续划分
+						quick(array, left, index-1)
+					}
+					if (right > index) {     //若右边存在子数组，继续划分
+						quick(array, index, right)
+					}
+				}
+			}
+
+			//定义中间的数作为基准，使得左边数字小，右边数大
+			var partition = function(array, left, right) {
+				var pivot = array[Math.floor((right+left)/2)],  //定义中间的数作为基准
+				    i = left,     //左边指针
+				    j = right;    //右边指针
+				while (i <= j) {  //判断停止条件：左边指针位置已经超过右边的指针
+					while (array[i] < pivot) {
+						i++;      //左边找到一个比基准大的数停止
+					}
+					while (array[j] > pivot) {
+						j--;      //右边的数找到一个比基准小的数停止
+					}
+					if (i <= j) {  //如果左边指针位置小于右边的，则交换两数
+						swap(array, i, j);
+						i++;
+						j--;
+					}
+				}
+				return i;        //返回i的值，i的位置将数组划分为2个子数组
+			}
+            
+            //交换两个数
+			var swap = function(array, index1, index2) {
+				var item = array[index1];
+				array[index1] = array[index2];
+				array[index2] = item;
+			}
+
+			quick(array, 0, array.length-1);
+			console.log(list.toString());
+		}
+
+	}
+    
+    //[5,4,2,1,6]
+	var list = new List();
+	list.insert(5);
+	list.insert(4);
+	list.insert(2);
+	list.insert(1);
+	list.insert(6);
+    console.log(list.toString())
+    list.quickSort();
+</script>
+</body>
+</html>
