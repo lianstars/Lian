@@ -8,7 +8,7 @@
 <home-special></home-special>
 <home-activity></home-activity>
 <home-season></home-season>
-<home-recommond :list="waterfallData"></home-recommond>
+<home-recommond :list="waterfallData" v-if='flag'></home-recommond>
 </div>
 </template>
 
@@ -38,7 +38,8 @@ export default{
   },
   data () {
     return {
-      waterfallData: []
+      waterfallData: [],
+      flag: false
     }
   },
   methods: {
@@ -49,6 +50,7 @@ export default{
     getHomeInfoSucc (res) {
       res = res.data
       if (res.ret && res.data) {
+        this.flag = true
         const data = res.data
         this.waterfallData = data.waterfallData
       }
@@ -63,5 +65,4 @@ export default{
 <style lang="stylus" scoped>
     .Home
       background-color: #F5F5F5
-      height:1200px
 </style>
