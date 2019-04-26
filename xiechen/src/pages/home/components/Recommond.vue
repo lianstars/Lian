@@ -1,47 +1,50 @@
 <template>
-    <div class="waterfall">
-        <ul class="waterfall-left" ref="left">
-            <li class="item" ref="col" v-for="(item,id) of left" :key="id">
-                <div class="item-box">
-                    <img class="item-img" :src="item.img" >
-                    <div class="item-text">
-                        <div class="title">{{item.title}}</div>
-                        <div class="des">
-                            <span class="des-left">{{item.descript}}</span>
-                            <span class="des-right">{{item.tag}}</span>
-                        </div>
-                        <div class="ass-box">
-                            <p class="ass">{{item.assess}}</p>
-                            <P class="price">￥<span>{{item.price}}</span>起</P>
-                            <p class="remark">{{item.remark}}</p>
-                        </div>
-                    </div>
-                </div>
-            </li>
-        </ul>
-        <ul class="waterfall-right" ref="right">
-            <li class="item" ref="col" v-for="(item,id) of right" :key="id">
-                <div class="item-box">
-                    <img class="item-img" :src="item.img" >
-                    <div class="item-text">
-                        <div class="title">{{item.title}}</div>
-                        <div class="des">
-                            <span class="des-left">{{item.descript}}</span>
-                            <span class="des-right" v-if="flag">{{item.tag}}</span>
-                        </div>
-                        <div class="ass-box">
-                            <p class="ass">{{item.assess}}</p>
-                            <P class="price">￥<span>{{item.price}}</span>起</P>
-                            <p class="remark">{{item.remark}}</p>
+    <div class="waterfall" ref="wrapper">
+        <div>
+            <ul class="waterfall-left" ref="left">
+                <li class="item" ref="col" v-for="(item,id) of left" :key="id">
+                    <div class="item-box">
+                        <img class="item-img" :src="item.img" >
+                        <div class="item-text">
+                            <div class="title">{{item.title}}</div>
+                            <div class="des">
+                                <span class="des-left">{{item.descript}}</span>
+                                <span class="des-right">{{item.tag}}</span>
+                            </div>
+                            <div class="ass-box">
+                                <p class="ass">{{item.assess}}</p>
+                                <P class="price">￥<span>{{item.price}}</span>起</P>
+                                <p class="remark">{{item.remark}}</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </li>
-        </ul>
+                </li>
+            </ul>
+            <ul class="waterfall-right" ref="right">
+                <li class="item" ref="col" v-for="(item,id) of right" :key="id">
+                    <div class="item-box">
+                        <img class="item-img" :src="item.img" >
+                        <div class="item-text">
+                            <div class="title">{{item.title}}</div>
+                            <div class="des">
+                                <span class="des-left">{{item.descript}}</span>
+                                <span class="des-right" v-if="flag">{{item.tag}}</span>
+                            </div>
+                            <div class="ass-box">
+                                <p class="ass">{{item.assess}}</p>
+                                <P class="price">￥<span>{{item.price}}</span>起</P>
+                                <p class="remark">{{item.remark}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
     </div>
 </template>
 
 <script>
+import Bscroll from 'better-scroll'
 export default{
   name: 'HomeRecommond',
   props: ['list'],
@@ -75,11 +78,21 @@ export default{
       }
       this.$nextTick(function () {
         this.updateWaterfall()
+        this.scroll = new Bscroll(this.$refs.wrapper)
       })
     }
   },
   mounted () {
     this.updateWaterfall()
+    this.scroll = new Bscroll(this.$refs.wrapper)
+  },
+  created() {
+    requestData().then((res) => {
+        this.data = res.data
+        this.$nextTick(() => {
+        this.scroll = new Bscroll(this.$refs.wrapper, {})
+        })
+    })
   }
 }
 </script>
@@ -87,6 +100,7 @@ export default{
 <style lang="stylus" scoped>
     .waterfall
       width: 94%
+      height: 500px
       margin: 10px auto
       position: relative
       overflow: hidden
