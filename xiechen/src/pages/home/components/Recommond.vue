@@ -27,7 +27,7 @@
                         <div class="title">{{item.title}}</div>
                         <div class="des">
                             <span class="des-left">{{item.descript}}</span>
-                            <span class="des-right">{{item.tag}}</span>
+                            <span class="des-right" v-if="flag">{{item.tag}}</span>
                         </div>
                         <div class="ass-box">
                             <p class="ass">{{item.assess}}</p>
@@ -48,7 +48,8 @@ export default{
   data () {
     return {
       left: [],
-      right: []
+      right: [],
+      flag: true
     }
   },
   methods: {
@@ -56,17 +57,21 @@ export default{
       console.log('123')
       const leftHeight = this.$refs.left.clientHeight
       const rightHeight = this.$refs.right.clientHeight
-      console.log(this.list)
-      console.log(this.left)
-      console.log(this.right)
       let item = this.list.shift()
       if (item == null) {
         return
+      }
+      this.flag = true
+      if (item.tag === 1) {
+        this.flag = false
+        console.log(item.tag)
+        console.log(this.flag)
       }
       if (leftHeight <= rightHeight) {
         this.left.push(item)
       } else {
         this.right.push(item)
+        console.log(this.right)
       }
       this.$nextTick(function () {
         this.updateWaterfall()

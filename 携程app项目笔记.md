@@ -1,3 +1,7 @@
+[TOC]
+
+
+
 ## 轮播图
 
 使用VUE组件中插件
@@ -96,9 +100,20 @@ div使用了绝对定位后居中：
 	 其中margin-left和margin-top为图片宽/高的一半，值为负数，表示左移/上移图片。
 ```
 
+## 瀑布流布局
+
+### 父子组件之间的传值
+
+1、父组件传值给子组件：父组件通过`v-bind:`属性传值子组件：子组件通过`props`接收值。
 
 
 
 
 
+### 通过ajax异步获取页面数据，使得页面数据渲染不出来
 
+在组件部分使用`v-if = flag`，当ajax数据请求完成将flag设置为true
+
+![1556184347512](C:\Users\lynn\AppData\Roaming\Typora\typora-user-images\1556184347512.png)
+
+![1556184353517](C:\Users\lynn\AppData\Roaming\Typora\typora-user-images\1556184353517.png)

@@ -18,7 +18,7 @@
         "tag": "沙雕故乡",
         "assess": "景点精选top3",
         "price": "100",
-        "remark": "销量812份"
+        "remark": "销量841份"
       }, {
         "id": "0003",
         "img" : "https://dimg04.c-ctrip.com/images/300h0b000000583mwA00A_C_170_170_Q90.jpg",
@@ -33,7 +33,7 @@
         "img" : "https://dimg04.c-ctrip.com/images/300d0u000000iwbc47991_C_350_170_Q90.jpg",
         "title": "海南三亚4日3晚半自助游",
         "descript": "俯瞰十里金沙美景",
-        "tag": "沙雕故乡",
+        "tag": 1,
         "assess": "景点精选top3",
         "price": "100",
         "remark": "销量812份"
