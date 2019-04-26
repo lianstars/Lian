@@ -57,7 +57,6 @@ export default{
   },
   methods: {
     updateWaterfall () {
-      console.log('123')
       const leftHeight = this.$refs.left.clientHeight
       const rightHeight = this.$refs.right.clientHeight
       let item = this.list.shift()
@@ -67,14 +66,11 @@ export default{
       this.flag = true
       if (item.tag === 1) {
         this.flag = false
-        console.log(item.tag)
-        console.log(this.flag)
       }
       if (leftHeight <= rightHeight) {
         this.left.push(item)
       } else {
         this.right.push(item)
-        console.log(this.right)
       }
       this.$nextTick(function () {
         this.updateWaterfall()
@@ -85,14 +81,6 @@ export default{
   mounted () {
     this.updateWaterfall()
     this.scroll = new Bscroll(this.$refs.wrapper)
-  },
-  created() {
-    requestData().then((res) => {
-        this.data = res.data
-        this.$nextTick(() => {
-        this.scroll = new Bscroll(this.$refs.wrapper, {})
-        })
-    })
   }
 }
 </script>
