@@ -7,7 +7,7 @@
 <home-icon3></home-icon3>
 <home-special></home-special>
 <home-activity></home-activity>
-<home-season></home-season>
+<home-season :list="season"></home-season>
 <home-recommond :list="waterfallData" v-if='flag'></home-recommond>
 </div>
 </template>
@@ -38,8 +38,9 @@ export default{
   },
   data () {
     return {
+      flag: false,
       waterfallData: [],
-      flag: false
+      season: []
     }
   },
   methods: {
@@ -53,6 +54,7 @@ export default{
         this.flag = true
         const data = res.data
         this.waterfallData = data.waterfallData
+        this.season = data.season
       }
     }
   },

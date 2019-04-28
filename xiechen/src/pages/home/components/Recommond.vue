@@ -57,7 +57,6 @@ export default{
   },
   methods: {
     updateWaterfall () {
-      console.log('123')
       const leftHeight = this.$refs.left.clientHeight
       const rightHeight = this.$refs.right.clientHeight
       let item = this.list.shift()
@@ -67,14 +66,11 @@ export default{
       this.flag = true
       if (item.tag === 1) {
         this.flag = false
-        console.log(item.tag)
-        console.log(this.flag)
       }
       if (leftHeight <= rightHeight) {
         this.left.push(item)
       } else {
         this.right.push(item)
-        console.log(this.right)
       }
       this.$nextTick(function () {
         this.updateWaterfall()
@@ -93,7 +89,7 @@ export default{
     .waterfall
       width: 94%
       height: 500px
-      margin: 10px auto
+      margin: 68px auto
       position: relative
       overflow: hidden
       .waterfall-left
