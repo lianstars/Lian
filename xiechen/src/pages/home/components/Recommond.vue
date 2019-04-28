@@ -85,14 +85,6 @@ export default{
   mounted () {
     this.updateWaterfall()
     this.scroll = new Bscroll(this.$refs.wrapper)
-  },
-  created() {
-    requestData().then((res) => {
-        this.data = res.data
-        this.$nextTick(() => {
-        this.scroll = new Bscroll(this.$refs.wrapper, {})
-        })
-    })
   }
 }
 </script>
