@@ -89,7 +89,7 @@ export default{
     .waterfall
       width: 94%
       height: 500px
-      margin: 10px auto
+      margin: 68px auto
       position: relative
       overflow: hidden
       .waterfall-left
