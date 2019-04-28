@@ -1,5 +1,5 @@
 <template>
-    <div class="waterfall" ref="wrapper">
+    <div class="waterfall" ref="waterfall">
         <div>
             <ul class="waterfall-left" ref="left">
                 <li class="item" ref="col" v-for="(item,id) of left" :key="id">
@@ -74,13 +74,17 @@ export default{
       }
       this.$nextTick(function () {
         this.updateWaterfall()
-        this.scroll = new Bscroll(this.$refs.wrapper)
+        if (!this.scroll) {
+          this.scroll = new Bscroll(this.$refs.waterfall)
+          console.log(this.scroll)
+        } else {
+          this.scroll.refresh()
+        }
       })
     }
   },
   mounted () {
     this.updateWaterfall()
-    this.scroll = new Bscroll(this.$refs.wrapper)
   }
 }
 </script>
@@ -88,9 +92,11 @@ export default{
 <style lang="stylus" scoped>
     .waterfall
       width: 94%
-      height: 500px
-      margin: 68px auto
-      position: relative
+      height: 624px
+      left: 0
+      right: 0
+      margin: 68px auto 0px
+      position: absolute
       overflow: hidden
       .waterfall-left
         width: 46%
