@@ -7,8 +7,7 @@
 <home-icon3></home-icon3>
 <home-special></home-special>
 <home-activity></home-activity>
-<home-season :list="season"></home-season>
-<home-recommond :list="waterfallData" v-if='flag'></home-recommond>
+<home-bottom></home-bottom>
 </div>
 </template>
 
@@ -22,6 +21,7 @@ import HomeSpecial from './components/Special'
 import HomeActivity from './components/Activity'
 import HomeSeason from './components/Season'
 import HomeRecommond from './components/Recommond'
+import HomeBottom from './components/Bottom'
 import axios from 'axios'
 export default{
   name: 'Home',
@@ -34,7 +34,8 @@ export default{
     HomeSpecial,
     HomeActivity,
     HomeSeason,
-    HomeRecommond
+    HomeRecommond,
+    HomeBottom
   },
   data () {
     return {
@@ -67,4 +68,5 @@ export default{
 <style lang="stylus" scoped>
     .Home
       background-color: #F5F5F5
+      padding-bottom: 50px
 </style>

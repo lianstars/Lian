@@ -92,7 +92,7 @@ export default{
 <style lang="stylus" scoped>
     .waterfall
       width: 94%
-      height: 624px
+      height: 572px
       left: 0
       right: 0
       margin: 68px auto 0px
