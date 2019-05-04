@@ -39,24 +39,39 @@
                     </div>
                 </li>
             </ul>
+            <div class="clear"></div>
         </div>
     </div>
 </template>
 
 <script>
 import Bscroll from 'better-scroll'
+import axios from 'axios'
 export default{
-  name: 'HomeRecommond',
-  props: ['list'],
+  name: 'Flower',
   data () {
     return {
+      list: [],
       left: [],
       right: [],
-      flag: true
+      flag: false
     }
   },
   methods: {
-    updateWaterfall () {
+    getData () {
+      axios.get('/static/mock/recommond.json')
+        .then(this.getDataSucc)
+    },
+    getDataSucc (res) {
+      res = res.data
+      if (res.ret && res.data) {
+        this.flag = true
+        const data = res.data
+        this.list = data.waterfallData
+        this.upDateWaterfall()
+      }
+    },
+    upDateWaterfall () {
       const leftHeight = this.$refs.left.clientHeight
       const rightHeight = this.$refs.right.clientHeight
       let item = this.list.shift()
@@ -73,10 +88,9 @@ export default{
         this.right.push(item)
       }
       this.$nextTick(function () {
-        this.updateWaterfall()
+        this.upDateWaterfall()
         if (!this.scroll) {
           this.scroll = new Bscroll(this.$refs.waterfall)
-          console.log(this.scroll)
         } else {
           this.scroll.refresh()
         }
@@ -84,7 +98,7 @@ export default{
     }
   },
   mounted () {
-    this.updateWaterfall()
+    this.getData()
   }
 }
 </script>
@@ -92,12 +106,14 @@ export default{
 <style lang="stylus" scoped>
     .waterfall
       width: 94%
-      height: 572px
+      height: 600px
       left: 0
       right: 0
-      margin: 68px auto 0px
+      margin: 0px auto 0px
       position: absolute
       overflow: hidden
+      .clear
+        clear: both
       .waterfall-left
         width: 46%
         display: inline-block

@@ -7,6 +7,7 @@
 <home-icon3></home-icon3>
 <home-special></home-special>
 <home-activity></home-activity>
+<home-tab></home-tab>
 <home-bottom></home-bottom>
 </div>
 </template>
@@ -19,9 +20,8 @@ import HomeIcon2 from './components/Icon2'
 import HomeIcon3 from './components/Icon3'
 import HomeSpecial from './components/Special'
 import HomeActivity from './components/Activity'
-import HomeSeason from './components/Season'
-import HomeRecommond from './components/Recommond'
-import HomeBottom from './components/Bottom'
+import HomeBottom from '../common/Bottom'
+import HomeTab from './components/Tab'
 import axios from 'axios'
 export default{
   name: 'Home',
@@ -33,13 +33,11 @@ export default{
     HomeIcon3,
     HomeSpecial,
     HomeActivity,
-    HomeSeason,
-    HomeRecommond,
+    HomeTab,
     HomeBottom
   },
   data () {
     return {
-      flag: false,
       waterfallData: [],
       season: []
     }
@@ -52,10 +50,8 @@ export default{
     getHomeInfoSucc (res) {
       res = res.data
       if (res.ret && res.data) {
-        this.flag = true
         const data = res.data
         this.waterfallData = data.waterfallData
-        this.season = data.season
       }
     }
   },
