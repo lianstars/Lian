@@ -10,6 +10,12 @@ export default{
   name: 'Photo',
   components: {
     Bottom
+  },
+  watch: {
+    $route (to, from) {
+      console.log(to.path)
+    },
+    deep: true
   }
 }
 </script>

@@ -114,7 +114,11 @@ export default{
             padding-bottom: 5px
             text-align: center
           .name
+            display: inline-block
             color: #000
     .clear
       height: 430px
+    .router-link-active>span
+      font-weight: 800
+      font-size: 16px
 </style>

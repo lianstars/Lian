@@ -1,12 +1,22 @@
 <template>
 <div>
-个人中心
+<bottom></bottom>
 </div>
 </template>
 
 <script>
+import Bottom from '../common/Bottom'
 export default{
-  name: 'Stroke'
+  name: 'User',
+  components: {
+    Bottom
+  },
+  watch: {
+    $route (to, from) {
+      console.log(to.path)
+    },
+    deep: true
+  }
 }
 </script>
 

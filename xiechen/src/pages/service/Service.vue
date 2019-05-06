@@ -1,12 +1,22 @@
 <template>
 <div>
-客服
+<bottom></bottom>
 </div>
 </template>
 
 <script>
+import Bottom from '../common/Bottom'
 export default{
-  name: 'Stroke'
+  name: 'Service',
+  components: {
+    Bottom
+  },
+  watch: {
+    $route (to, from) {
+      console.log(to.path)
+    },
+    deep: true
+  }
 }
 </script>
 

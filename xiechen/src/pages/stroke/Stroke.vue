@@ -1,12 +1,22 @@
 <template>
 <div>
-123
+<bottom></bottom>
 </div>
 </template>
 
 <script>
+import Bottom from '../common/Bottom'
 export default{
-  name: 'Stroke'
+  name: 'Stroke',
+  components: {
+    Bottom
+  },
+  watch: {
+    $route (to, from) {
+      console.log(to.path)
+    },
+    deep: true
+  }
 }
 </script>
 
